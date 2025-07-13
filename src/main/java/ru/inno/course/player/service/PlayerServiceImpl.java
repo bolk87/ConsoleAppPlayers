@@ -16,6 +16,12 @@ public class PlayerServiceImpl implements PlayerService {
         initStorages();
     }
 
+    // Новый конструктор для тестов
+    public PlayerServiceImpl(DataProvider provider) {
+        this.provider = provider;
+        initStorages();
+    }
+
     @Override
     public Player getPlayerById(int id) {
         if ( !this.players.containsKey(id)){
@@ -69,7 +75,7 @@ public class PlayerServiceImpl implements PlayerService {
         return player.getPoints();
     }
 
-    private void initStorages() {
+    public void initStorages() {
         Collection<Player> currentList = Collections.EMPTY_LIST;
         try {
              currentList = provider.load();
